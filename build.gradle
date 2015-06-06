@@ -1,0 +1,68 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+    }
+}
+
+apply plugin: 'forge'
+
+repositories {
+	maven {
+		name 'CB Repo'
+		url 'http://chickenbones.net/maven/'
+	}
+	maven {
+		name 'Mobius Repo'
+		url 'http://mobiusstrip.eu/maven/'
+	}
+	maven {
+		name 'TehNut Repo'
+		url 'http://tehnut.info/maven/'
+	}
+}
+
+dependencies {
+	compile('mcp.mobius.waila:Waila:1.5.11-RC2-NONEI_1.7.10') {
+		exclude group: 'mcp.mobius.waila'
+	}
+	compile "codechicken:CodeChickenLib:1.7.10-1.1.3.136:dev"
+    compile "codechicken:CodeChickenCore:1.7.10-1.0.6.43:dev"
+    compile "codechicken:NotEnoughItems:1.7.10-1.0.4.105:dev"
+	compile "info.amerifrance.guideapi:Guide-API:1.7.10-1.0-20:deobf"
+}
+
+version = "1.0.0"
+group= "com.eagle.adventurersalchemy" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "AdventurersAlchemy"
+
+minecraft {
+    version = "1.7.10-10.13.3.1428-1.7.10"
+    runDir = "eclipse"
+}
+
+processResources
+{
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+
+        expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
