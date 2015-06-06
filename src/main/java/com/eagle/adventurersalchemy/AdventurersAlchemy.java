@@ -1,12 +1,11 @@
 package com.eagle.adventurersalchemy;
 
-import com.eagle.adventurersalchemy.creativeTab.CreativeTab;
 import com.eagle.adventurersalchemy.proxy.CommonProxy;
+import com.eagle.adventurersalchemy.register.ItemRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import net.minecraft.creativetab.CreativeTabs;
 
 /**
  * This class was created by GustoniaEagle.
@@ -24,11 +23,9 @@ public class AdventurersAlchemy
     @SidedProxy(clientSide = Dictionary.CLIENT_PROXY, serverSide = Dictionary.COMMON_PROXY)
     public static CommonProxy proxy;
 
-    public static CreativeTabs tabAAL = CreativeTab.INSTANCE;
-
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-
+        ItemRegistry.load();
     }
 }

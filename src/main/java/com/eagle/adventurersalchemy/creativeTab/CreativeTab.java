@@ -35,7 +35,7 @@ public class CreativeTab extends CreativeTabs
     {
         return Items.apple;
     }
-    
+
     @Override
     public void displayAllReleventItems(List list)
     {
