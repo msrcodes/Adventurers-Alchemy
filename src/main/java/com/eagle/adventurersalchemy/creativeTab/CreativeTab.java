@@ -1,10 +1,9 @@
 package com.eagle.adventurersalchemy.creativeTab;
 
 import com.eagle.adventurersalchemy.Dictionary;
+import com.eagle.adventurersalchemy.register.ItemRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -33,7 +32,7 @@ public class CreativeTab extends CreativeTabs
     @Override
     public Item getTabIconItem()
     {
-        return Items.apple;
+        return ItemRegistry.alchemicalDust;
     }
 
     @Override
@@ -41,8 +40,7 @@ public class CreativeTab extends CreativeTabs
     {
         this.list = list;
 
-        addItem(Items.apple);
-        addBlock(Blocks.sponge);
+        addItem(ItemRegistry.alchemicalDust);
     }
 
     private void addItem(Item item)
