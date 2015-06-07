@@ -5,8 +5,11 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import org.lwjgl.input.Keyboard;
 
 import java.util.List;
 
@@ -43,10 +46,34 @@ public class ItemAlchemicalDust extends ItemAAl
         this.itemIcon = iconRegister.registerIcon(Dictionary.MOD_ID + ":" + Dictionary.UNLOCALIZED_ALCHEMICAL_DUST);
     }
 
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List list, boolean useInfo)
+    {
+        if (itemStack.getItemDamage() != 0 && !Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) &&
+                !Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
+        {
+            list.add("§o" + StatCollector.translateToLocal("item.tooltip.latin." +
+                    Dictionary.UNLOCALIZED_ALCHEMICAL_DUST_TYPES[itemStack.getItemDamage()].toLowerCase()));
+        }
+        else if (itemStack.getItemDamage() != 0 &&
+                (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT)))
+        {
+            list.add("§o" + StatCollector.translateToLocal("item.tooltip.normal." +
+                    Dictionary.UNLOCALIZED_ALCHEMICAL_DUST_TYPES[itemStack.getItemDamage()].toLowerCase()));
+        }
+    }
+
     @Override
     public String getUnlocalizedName(ItemStack itemStack)
     {
-        return String.format("%s%s", Dictionary.UNLOCALIZED_ALCHEMICAL_DUST, Dictionary.UNLOCALIZED_ALCHEMICAL_DUST_TYPES[itemStack.getItemDamage()]);
+        if (itemStack.getItemDamage() == 0)
+        {
+            return String.format("item.%s%s", Dictionary.UNLOCALIZED_ALCHEMICAL_DUST, Dictionary.UNLOCALIZED_ALCHEMICAL_DUST_TYPES[itemStack.getItemDamage()]);
+        }
+        else
+        {
+            return "item." + Dictionary.UNLOCALIZED_ALCHEMICAL_DUST;
+        }
     }
 
     @Override

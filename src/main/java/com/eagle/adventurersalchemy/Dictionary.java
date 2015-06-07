@@ -20,15 +20,11 @@ public class Dictionary
 
     public static final String UNLOCALIZED_ALCHEMICAL_DUST = "alchemicalDust";
     public static final String[] UNLOCALIZED_ALCHEMICAL_DUST_TYPES =
-            new String[]{"Aqua", "Ignis", "Inanis", "Magicae", "Mortem", "Sol", "Vita"};
-    public static final String COLOUR_AQUA = "2B6666";
-    public static final String COLOUR_IGNIS = "812B2B";
-    public static final String COLOUR_INANIS = "A4A4A4";
-    public static final String COLOUR_MAGICAE = "5F2B5F";
-    public static final String COLOUR_MORTEM = "2B2B2B";
-    public static final String COLOUR_SOL = "86862B";
-    public static final String COLOUR_VITA = "2B632B";
+            new String[]{"Ash", "Ignis", "Terra", "Aeris", "Aqua", "Sol", "Luna", "Inferna", "Metallum", "Calor",
+                    "Vapor", "Flamma", "Nocte", "Petram", "Harenosa", "Luto", "Invio", "Meteoron", "Ventus", "Nube",
+                    "Caelum", "Stella", "Oceanus", "Spiritus", "Unda", "Exitium", "Concordia", "Pacem"};
     public static final String[] COLOURS =
-            new String[]{COLOUR_AQUA, COLOUR_IGNIS, COLOUR_INANIS, COLOUR_MAGICAE, COLOUR_MORTEM, COLOUR_SOL,
-                    COLOUR_VITA};
+            new String[]{"293338", "db2424", "3fbd2c", "ffdb00", "00abff", "ff8100", "4b5474", "ff3300", "dbd3d0",
+                    "fd8432", "93a9a9", "ff4d00", "4900ff", "5a2f17", "b8883f", "6b3d0f", "c19f7c", "ae6c50", "caeac3",
+                    "c3ddea", "6ccfff", "f8aaf9", "0004ff", "8d1062", "364cba", "ff4d00", "ff009a", "ffffff"};
 }
