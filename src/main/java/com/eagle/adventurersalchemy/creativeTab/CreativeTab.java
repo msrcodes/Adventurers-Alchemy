@@ -40,6 +40,7 @@ public class CreativeTab extends CreativeTabs
     {
         this.list = list;
 
+        addItem(ItemRegistry.mortar);
         addItem(ItemRegistry.alchemicalDust);
     }
 

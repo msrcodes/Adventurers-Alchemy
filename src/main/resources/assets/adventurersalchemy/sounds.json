@@ -1,0 +1,10 @@
+{
+	"item.mortar.use":
+	{
+		"category": "neutral",
+		"sounds":
+		[
+			"item/mortar/use"
+		]
+	}
+}

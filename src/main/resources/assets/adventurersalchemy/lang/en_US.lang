@@ -1,5 +1,6 @@
 itemGroup.adventurersalchemy=Adventurer's Alchemy
 
+item.mortar.name=Mortar
 item.alchemicalDustAsh.name=Ash
 item.alchemicalDust.name=Alchemical Dust
 item.tooltip.latin.ignis=Ignis
@@ -29,7 +30,6 @@ item.tooltip.latin.unda=Unda
 item.tooltip.latin.exitium=Exitium
 item.tooltip.latin.concordia=Concordia
 item.tooltip.latin.pacem=Pacem
-
 item.tooltip.normal.ignis=Fire
 item.tooltip.normal.terra=Earth
 item.tooltip.normal.aeris=Air

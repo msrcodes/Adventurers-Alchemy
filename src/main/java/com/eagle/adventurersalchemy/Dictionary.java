@@ -27,4 +27,5 @@ public class Dictionary
             new String[]{"293338", "db2424", "3fbd2c", "ffdb00", "00abff", "ff8100", "4b5474", "ff3300", "dbd3d0",
                     "fd8432", "93a9a9", "ff4d00", "4900ff", "5a2f17", "b8883f", "6b3d0f", "c19f7c", "ae6c50", "caeac3",
                     "c3ddea", "6ccfff", "f8aaf9", "0004ff", "8d1062", "364cba", "ff4d00", "ff009a", "ffffff"};
+    public static final String UNLOCALIZED_MORTAR = "mortar";
 }
