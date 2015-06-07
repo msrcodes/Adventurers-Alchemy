@@ -2,6 +2,7 @@ package com.eagle.adventurersalchemy;
 
 import com.eagle.adventurersalchemy.proxy.CommonProxy;
 import com.eagle.adventurersalchemy.register.ItemRegistry;
+import com.eagle.adventurersalchemy.register.RecipeRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
@@ -27,5 +28,6 @@ public class AdventurersAlchemy
     public void preInit(FMLPreInitializationEvent event)
     {
         ItemRegistry.load();
+        RecipeRegistry.load();
     }
 }
