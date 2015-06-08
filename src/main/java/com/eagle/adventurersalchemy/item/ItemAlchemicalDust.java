@@ -1,11 +1,14 @@
 package com.eagle.adventurersalchemy.item;
 
 import com.eagle.adventurersalchemy.Dictionary;
+import com.eagle.adventurersalchemy.register.BlockRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
@@ -84,5 +87,22 @@ public class ItemAlchemicalDust extends ItemAAl
         {
             list.add(new ItemStack(this, 1, meta));
         }
+    }
+
+    @Override
+    public boolean onEntityItemUpdate(EntityItem entityItem)
+    {
+        if (entityItem.getEntityItem().stackSize == 8 && entityItem.getEntityItem().getItemDamage() == 0)
+        {
+            if (entityItem.worldObj.getBlock((int) entityItem.posX, (int) entityItem.posY, (int) entityItem.posZ) ==
+                    Blocks.fire)
+            {
+                entityItem.worldObj.setBlock((int) entityItem.posX, (int) entityItem.posY, (int) entityItem.posZ, BlockRegistry.alchemicalFire);
+                entityItem.worldObj.spawnParticle("largeexplode", entityItem.posX, entityItem.posY, entityItem.posZ, 0.0D, 0.0D, 0.0D);
+                entityItem.worldObj.playSoundEffect(entityItem.posX, entityItem.posY, entityItem.posZ, "random.levelup", 2.0F, 1.0F);
+                entityItem.setDead();
+            }
+        }
+        return false;
     }
 }

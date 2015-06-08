@@ -1,5 +1,13 @@
 package com.eagle.adventurersalchemy.proxy;
 
+import com.eagle.adventurersalchemy.register.BlockRegistry;
+import com.eagle.adventurersalchemy.render.AlchemicalFireItemRender;
+import com.eagle.adventurersalchemy.render.AlchemicalFireRender;
+import com.eagle.adventurersalchemy.tile.TileEntityAlchemicalFire;
+import cpw.mods.fml.client.registry.ClientRegistry;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.MinecraftForgeClient;
+
 /**
  * This class was created by GustoniaEagle.
  * It is distributed under a part of the Adventurer's Alchemy mod.
@@ -12,5 +20,9 @@ package com.eagle.adventurersalchemy.proxy;
  */
 public class ClientProxy extends CommonProxy
 {
-    //STUB
+    public void registerRenderers()
+    {
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAlchemicalFire.class, new AlchemicalFireRender());
+        MinecraftForgeClient.registerItemRenderer(new ItemStack(BlockRegistry.alchemicalFire).getItem(), new AlchemicalFireItemRender());
+    }
 }

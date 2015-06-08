@@ -1,11 +1,13 @@
 package com.eagle.adventurersalchemy;
 
 import com.eagle.adventurersalchemy.proxy.CommonProxy;
+import com.eagle.adventurersalchemy.register.BlockRegistry;
 import com.eagle.adventurersalchemy.register.ItemRegistry;
 import com.eagle.adventurersalchemy.register.RecipeRegistry;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 /**
@@ -28,6 +30,13 @@ public class AdventurersAlchemy
     public void preInit(FMLPreInitializationEvent event)
     {
         ItemRegistry.load();
+        BlockRegistry.load();
         RecipeRegistry.load();
+    }
+
+    @EventHandler
+    public void init(FMLInitializationEvent event)
+    {
+        proxy.registerRenderers();
     }
 }
