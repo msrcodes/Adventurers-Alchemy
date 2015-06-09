@@ -1,11 +1,14 @@
 package com.eagle.adventurersalchemy.block;
 
 import com.eagle.adventurersalchemy.Dictionary;
-import com.eagle.adventurersalchemy.creativeTab.CreativeTab;
+import com.eagle.adventurersalchemy.register.ItemRegistry;
 import com.eagle.adventurersalchemy.tile.TileEntityAlchemicalFire;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 /**
  * This class was created by GustoniaEagle.
@@ -23,9 +26,10 @@ public class BlockAlchemicalFire extends BlockContainerAAl
 
     public BlockAlchemicalFire()
     {
-        super(Material.fire);
-        this.setCreativeTab(CreativeTab.INSTANCE);
+        super(Material.ground);
+        this.setHardness(1.0F);
         this.setBlockName(Dictionary.UNLOCALIZED_ALCHEMICAL_FIRE);
+        this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.05F, 0.9375F);
     }
 
     @Override
@@ -51,4 +55,11 @@ public class BlockAlchemicalFire extends BlockContainerAAl
     {
         return -1;
     }
+
+    @Override
+    public Item getItemDropped(int a, Random rand, int b)
+    {
+        return ItemRegistry.alchemicalDust;
+    }
+
 }

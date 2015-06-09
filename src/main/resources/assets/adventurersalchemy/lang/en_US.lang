@@ -1,6 +1,7 @@
 itemGroup.adventurersalchemy=Adventurer's Alchemy
 
 item.mortar.name=Mortar
+tile.alchemicalFire.name=Alchemical Fire
 item.alchemicalDustAsh.name=Ash
 item.alchemicalDust.name=Alchemical Dust
 item.tooltip.latin.ignis=Ignis
