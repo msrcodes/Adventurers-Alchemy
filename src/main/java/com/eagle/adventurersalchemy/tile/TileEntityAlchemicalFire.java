@@ -14,4 +14,9 @@ import net.minecraft.tileentity.TileEntity;
  */
 public class TileEntityAlchemicalFire extends TileEntity
 {
+    @Override
+    public void updateEntity()
+    {
+
+    }
 }

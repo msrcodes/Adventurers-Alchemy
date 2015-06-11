@@ -31,4 +31,6 @@ public class Dictionary
     public static final String UNLOCALIZED_ALCHEMICAL_FIRE = "alchemicalFire";
     public static final String TEXTURE_ALCHEMICAL_FIRE =
             Dictionary.MOD_ID + ":" + "textures/blocks/model/alchemicalFire.png";
+    public static final String TEXTURE_ALCHEMICAL_FIRE_EFFECT =
+            Dictionary.MOD_ID + ":" + "textures/blocks/model/alchemicalFireEffect.png";
 }
