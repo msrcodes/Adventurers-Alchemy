@@ -4,7 +4,6 @@ import com.eagle.adventurersalchemy.Dictionary;
 import com.eagle.adventurersalchemy.model.AlchemicalFireModel;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -25,7 +24,6 @@ public class AlchemicalFireRender extends TileEntitySpecialRenderer
 {
     private final AlchemicalFireModel model = new AlchemicalFireModel();
     private final ResourceLocation modelTexture = (new ResourceLocation(Dictionary.TEXTURE_ALCHEMICAL_FIRE));
-    private final ResourceLocation effectTexture = (new ResourceLocation(Dictionary.TEXTURE_ALCHEMICAL_FIRE_EFFECT));
 
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float scale)
@@ -39,17 +37,5 @@ public class AlchemicalFireRender extends TileEntitySpecialRenderer
         this.model.render(null, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         GL11.glPopMatrix();
         GL11.glPopMatrix();
-
-        Tessellator tessellator = Tessellator.instance;
-        this.bindTexture(effectTexture);
-
-        tessellator.startDrawingQuads();
-
-        tessellator.addVertexWithUV(x + 1, y, z, 1.0, 1.0); //A
-        tessellator.addVertexWithUV(x + 1, y + 1, z, 1.0, 0.0); //B
-        tessellator.addVertexWithUV(x, y + 1, z, 0.0, 0.0); //C
-        tessellator.addVertexWithUV(x, y, z, 0.0, 1.0); //D
-
-        tessellator.draw();
     }
 }

@@ -49,7 +49,6 @@ public class ItemMortar extends ItemAAl
                             entityItem.getEntityItem().stackSize == 1)
                     {
                         world.spawnParticle("smoke", entityItem.posX, entityItem.posY, entityItem.posZ, 0.0D, 0.0D, 0.0D);
-                        //world.playSoundAtEntity(player, "adventurersalchemy:item.mortar.use", 2.0F, 1.0F);
                         world.playSoundEffect(x, y, z, "adventurersalchemy:item.mortar.use", 2.0F, 1.0F);
                         if (!world.isRemote)
                         {

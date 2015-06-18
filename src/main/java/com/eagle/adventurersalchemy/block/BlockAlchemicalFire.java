@@ -3,6 +3,7 @@ package com.eagle.adventurersalchemy.block;
 import com.eagle.adventurersalchemy.Dictionary;
 import com.eagle.adventurersalchemy.register.ItemRegistry;
 import com.eagle.adventurersalchemy.tile.TileEntityAlchemicalFire;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
@@ -60,6 +61,15 @@ public class BlockAlchemicalFire extends BlockContainerAAl
     public Item getItemDropped(int a, Random rand, int b)
     {
         return ItemRegistry.alchemicalDust;
+    }
+
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block block)
+    {
+        if (world.getBlock(x, y - 1, z).isAir(world, x, y, z))
+        {
+            this.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+            world.setBlockToAir(x, y, z);
+        }
     }
 
 }
