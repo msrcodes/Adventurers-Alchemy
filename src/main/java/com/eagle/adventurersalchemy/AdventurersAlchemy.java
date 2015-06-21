@@ -31,7 +31,8 @@ public class AdventurersAlchemy
     {
         ItemRegistry.load();
         BlockRegistry.load();
-        RecipeRegistry.load();
+        RecipeRegistry.loadCraftingRecipes();
+        RecipeRegistry.loadMortarRecipes();
     }
 
     @EventHandler

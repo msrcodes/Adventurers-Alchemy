@@ -1,11 +1,11 @@
 package com.eagle.adventurersalchemy.item;
 
 import com.eagle.adventurersalchemy.Dictionary;
-import com.eagle.adventurersalchemy.register.ItemRegistry;
+import com.eagle.adventurersalchemy.api.AdventurersAlchemyAPI;
+import com.eagle.adventurersalchemy.api.recipe.RecipeMortar;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
@@ -45,15 +45,20 @@ public class ItemMortar extends ItemAAl
                 if (obj instanceof EntityItem)
                 {
                     EntityItem entityItem = (EntityItem) obj;
-                    if (entityItem.getEntityItem().getItem() == new ItemStack(Items.coal, 1, 1).getItem() &&
-                            entityItem.getEntityItem().stackSize == 1)
+                    for (RecipeMortar recipe : AdventurersAlchemyAPI.mortarRecipes)
                     {
-                        world.spawnParticle("smoke", entityItem.posX, entityItem.posY, entityItem.posZ, 0.0D, 0.0D, 0.0D);
-                        world.playSoundEffect(x, y, z, "adventurersalchemy:item.mortar.use", 2.0F, 1.0F);
-                        if (!world.isRemote)
+                        if (entityItem.getEntityItem().getItem() == recipe.getInput().copy().getItem() &&
+                                entityItem.getEntityItem().getItemDamage() ==
+                                        recipe.getInput().copy().getItemDamage() &&
+                                entityItem.getEntityItem().stackSize == 1)
                         {
-                            entityItem.setEntityItemStack(new ItemStack(ItemRegistry.alchemicalDust));
-                            itemStack.damageItem(1, player);
+                            world.spawnParticle("smoke", entityItem.posX, entityItem.posY, entityItem.posZ, 0.0D, 0.0D, 0.0D);
+                            world.playSoundEffect(x, y, z, "adventurersalchemy:item.mortar.use", 2.0F, 1.0F);
+                            if (!world.isRemote)
+                            {
+                                entityItem.setEntityItemStack(recipe.getOutput().copy());
+                                itemStack.damageItem(1, player);
+                            }
                         }
                     }
                 }
