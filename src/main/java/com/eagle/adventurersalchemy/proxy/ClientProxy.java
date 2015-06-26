@@ -1,10 +1,13 @@
 package com.eagle.adventurersalchemy.proxy;
 
 import com.eagle.adventurersalchemy.register.BlockRegistry;
+import com.eagle.adventurersalchemy.render.AlchemicalFireBlockRender;
 import com.eagle.adventurersalchemy.render.AlchemicalFireItemRender;
 import com.eagle.adventurersalchemy.render.AlchemicalFireRender;
+import com.eagle.adventurersalchemy.render.RenderID;
 import com.eagle.adventurersalchemy.tile.TileEntityAlchemicalFire;
 import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.MinecraftForgeClient;
 
@@ -24,5 +27,7 @@ public class ClientProxy extends CommonProxy
     {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAlchemicalFire.class, new AlchemicalFireRender());
         MinecraftForgeClient.registerItemRenderer(new ItemStack(BlockRegistry.alchemicalFire).getItem(), new AlchemicalFireItemRender());
-    }
+		RenderID.ALCHEMICAL_FIRE = RenderingRegistry.getNextAvailableRenderId();
+		RenderingRegistry.registerBlockHandler(new AlchemicalFireBlockRender());
+	}
 }

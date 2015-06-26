@@ -2,11 +2,15 @@ package com.eagle.adventurersalchemy.block;
 
 import com.eagle.adventurersalchemy.Dictionary;
 import com.eagle.adventurersalchemy.register.ItemRegistry;
+import com.eagle.adventurersalchemy.render.AlchemicalFireBlockRender;
+import com.eagle.adventurersalchemy.render.RenderID;
 import com.eagle.adventurersalchemy.tile.TileEntityAlchemicalFire;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -54,11 +58,17 @@ public class BlockAlchemicalFire extends BlockContainerAAl
     @Override
     public int getRenderType()
     {
-        return -1;
-    }
+		return RenderID.ALCHEMICAL_FIRE;
+	}
 
-    @Override
-    public Item getItemDropped(int a, Random rand, int b)
+	@Override
+	public void registerBlockIcons(IIconRegister iconRegister) {
+		super.registerBlockIcons(iconRegister);
+		AlchemicalFireBlockRender.DummyFire.icons = new IIcon[1]; //initialize dummy fire texture array and fill it in
+	}
+
+	@Override
+	public Item getItemDropped(int a, Random rand, int b)
     {
         return ItemRegistry.alchemicalDust;
     }

@@ -31,4 +31,10 @@ public class Dictionary
     public static final String UNLOCALIZED_ALCHEMICAL_FIRE = "alchemicalFire";
     public static final String TEXTURE_ALCHEMICAL_FIRE =
             Dictionary.MOD_ID + ":" + "textures/blocks/model/alchemicalFire.png";
+
+	public enum NetworkIdentifiers {
+
+		ALCHEMICAL_FIRE;
+
+	}
 }
