@@ -1,5 +1,6 @@
 package com.eagle.adventurersalchemy;
 
+import com.eagle.adventurersalchemy.networking.PacketHandler;
 import com.eagle.adventurersalchemy.proxy.CommonProxy;
 import com.eagle.adventurersalchemy.register.BlockRegistry;
 import com.eagle.adventurersalchemy.register.ItemRegistry;
@@ -39,5 +40,6 @@ public class AdventurersAlchemy
     public void init(FMLInitializationEvent event)
     {
         proxy.registerRenderers();
-    }
+		PacketHandler.init();
+	}
 }

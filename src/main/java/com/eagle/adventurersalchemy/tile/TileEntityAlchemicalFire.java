@@ -1,7 +1,9 @@
 package com.eagle.adventurersalchemy.tile;
 
+import com.eagle.adventurersalchemy.Dictionary;
 import com.eagle.adventurersalchemy.item.ItemAlchemicalDust;
 import com.eagle.adventurersalchemy.register.ItemRegistry;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,7 +11,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 
 import java.util.List;
@@ -24,10 +25,12 @@ import java.util.List;
  * <p/>
  * File created @ 07/06/2015, 17:23 GMT.
  */
-public class TileEntityAlchemicalFire extends TileEntity implements IInventory
+public class TileEntityAlchemicalFire extends TileEntityBase implements IInventory
 {
     private ItemStack[] inventoryContents = new ItemStack[2];
     private int cooldown = 0;
+	//don't change this directly, use the helper method, otherwise it won't sync to the client nor will the fire render
+	private int fireColor = -1;
 
     @Override
     public void updateEntity()
@@ -66,14 +69,16 @@ public class TileEntityAlchemicalFire extends TileEntity implements IInventory
                             item.setFire(3);
                             item.setDead();
                             markDirty();
-                        }
+							setFireColor(0);
+						}
                         else if (this.getStackInSlot(1) == null && this.isItemValidForSlot(1, itemStack))
                         {
                             this.setInventorySlotContents(1, itemStack);
                             item.setFire(3);
                             item.setDead();
                             markDirty();
-                        }
+							setFireColor(0);
+						}
                         else if (!this.isItemValidForSlot(0, itemStack))
                         {
                             item.setFire(3);
@@ -90,8 +95,8 @@ public class TileEntityAlchemicalFire extends TileEntity implements IInventory
                 inventoryContents[1] = null;
                 cooldown = 20;
                 this.markDirty();
-
-                if (!worldObj.isRemote)
+				setFireColor(-1);
+				if (!worldObj.isRemote)
                 {
                     worldObj.spawnEntityInWorld(new EntityItem(worldObj,
                             xCoord + 0.5F,
@@ -100,6 +105,19 @@ public class TileEntityAlchemicalFire extends TileEntity implements IInventory
             }
         }
     }
+
+
+	public int getFireIcon() {
+		return fireColor;
+	}
+
+	private void setFireColor(int fireColor) {
+		if (fireColor == this.fireColor)
+			return; //don't do anything if it's not another color
+		this.fireColor = fireColor;
+		sync();
+		worldObj.markBlockRangeForRenderUpdate(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
+	}
 
     public void readFromNBT(NBTTagCompound nbtTagCompound)
     {
@@ -197,4 +215,19 @@ public class TileEntityAlchemicalFire extends TileEntity implements IInventory
     {
         return itemStack != null && itemStack.getItem() instanceof ItemAlchemicalDust;
     }
+
+	@Override
+	public int getIdentifier() {
+		return Dictionary.NetworkIdentifiers.ALCHEMICAL_FIRE.ordinal();
+	}
+
+	@Override
+	public void writeToByteBuff(ByteBuf buf) {
+		buf.writeInt(fireColor);
+	}
+
+	@Override
+	public void readFromByteBuff(ByteBuf buf) {
+		fireColor = buf.readInt();
+	}
 }
